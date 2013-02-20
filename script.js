@@ -43,12 +43,23 @@ $(document).ready(function(){
 	// });
 });
 
+function log(msg) {
+    setTimeout(function() {
+        throw new Error(msg);
+    }, 0);
+}
+
+var colors = new Array('red','blue','green');
+
 window.setInterval(function(){
-  var randTop = 1000*Math.random()+200;
-  var randLeft = 500*Math.random()+100;
-  $('body').append($('<div class="sudden" style="position:absolute; top:',randTop,';left:',randLeft,';height:100px; width:100px; background-color:blue;"></div>'));
-}, 1000);
+  var randTop = Math.round(400*Math.random());
+  var randLeft = Math.round(300*Math.random());
+  var randColor = Math.round(3*Math.random());
+  log(randColor);
+  $('#boxGarden').append($('<div class="sudden" style=" border-radius:10px;position:absolute; top:'+randTop+';left:'+randLeft+';height:50px; width:50px; background-color:'+colors[randColor]+';"></div>'));
+}, 500);
 
 window.setInterval(function(){
   $( ".sudden" ).toggle( "explode" );
-}, 500);
+  $(".sudden").remove();
+}, 2000);

@@ -32,7 +32,9 @@
 		<ul style="color: white;">
 			<li>Q key : Begin Generating</li>
 			<li>S key : Stop Generating</li>
-			<li>A key : Pulsate Effect </li>
+			<li>W key : Toggle Draggable</li>
+			<li>E key : Shake</li>
+			<li>A key : Pulsate</li>
 			<li>D Key : Disapear</li>
 		</ul>
 	</div>
@@ -70,24 +72,26 @@
 
 //randomly generate color and location of boxes
 function generateBoxes(setting){
+	boxState = 1;
 	timerId = window.setInterval(function(){
-		var randTop = Math.round(360*Math.random())+15;
-		var randLeft = Math.round(260*Math.random())+15;
+		var randTop = Math.round(370*Math.random())+15;
+		var randLeft = Math.round(270*Math.random())+15;
 		var randColor = Math.round(3*Math.random());
 		$('#boxGarden').append($('<div class="sudden" style=" border-radius:10px;position:absolute; top:'+randTop+';left:'+randLeft+';height:50px; width:50px; background-color:'+colors[randColor]+';"></div>'));
 	}, 500);
-	$( ".sudden" ).draggable();
 }
 
 
-
+var boxState = 0;
 var timerId = 0;
-
+var dragState = 0;
 //Take user input and do indicated functionality
 $( document ).keydown(function(key) {
 	switch(parseInt(key.which,10)){
   	case 81: //letter q
-  	generateBoxes('on');
+  	if (boxState == 0){
+  	generateBoxes();
+  	}
   	break;
   	case 83: //letter s
   	if (timerId){
@@ -99,7 +103,20 @@ $( document ).keydown(function(key) {
   	$(".sudden").remove();
   	break;
 	case 65: //letter a
-	$( ".sudden" ).toggle( "shake" );
+	$( ".sudden" ).effect("pulsate", { times:3 }, 200);
+	break;
+	case 87: //letter w
+	if (dragState == 0){
+		$( ".sudden" ).draggable({containment: "parent"});
+		dragState = 1;
+	}
+	else{
+		$(".sudden").draggable("destroy");
+		dragState = 0;
+	}
+	break;
+	case 69: //letter e
+	$(".sudden").effect("shake", { times:2 }, 300);
 	break;
 	default:
 	break;  	

@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demo</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="stylish.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+</head>
+
+<body link="#FFF" vlink="#FFF" alink="#FFF">
+
+	<div id="header">
+		<div id="insideHeader">Demo Site </div>
+		<div id="name">by alyssa bawgus</div>
+	</div>
+
+	<div id="sidebar">
+		<div id="itemwrap1">
+
+			<div class="item" ><div id="item1"><a href="index.html#Home">Home</a></div></div>
+
+			<div class="item" ><div id="item2"><a href="altpage1.html">Alt Page 1</a></div></div>
+
+			<div class="item" ><div id="item3"><a href="altpage2.html">Alt Page 2</a></div></div>
+			<div id="subBar"></div>
+		</div>
+	</div>
+
+
+<!-- 	<a href="index.html" data-role="button" data-icon="delete">Delete</a> -->
+
+
+	<script>
+	$( "#draggable" ).draggable();
+
+	var $item = $('.item');
+
+	$($item).mouseenter(function(){
+		/*$(this).fadeTo('fast',.25)*/
+		$(this).css("background-color","#777");
+	});
+
+	$($item).mouseleave(function(){
+		/*$(this).fadeTo('fast',1)*/
+		$(this).css("background-color","#141414");
+	});
+
+
+	</script>
+
+</body>
+</html>

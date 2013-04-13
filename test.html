@@ -9,7 +9,7 @@
 
 </head>
 
-<body link="#FFF" vlink="#FFF" alink="#FFF">
+<body>
 
 	<div id="header">
 		<div id="insideHeader">Demo Site </div>
@@ -17,47 +17,49 @@
 	</div>
 
 	<div id="sidebar">
-		<div id="itemwrap">
-			<div class="item" ><div id="item1"><a href="index.html#Home">Home</a></div></div>
+		<div id="itemwrap1">
 
-			<div class="item" ><div id="item2"><a href="altpage1.html">Alt Page 1</a></div></div>
+			<div class="item" ><div id="item1"><a href="test.html#Home">Home</a></div></div>
 
-			<div class="item" ><div id="item3"><a href="altpage2.html">Alt Page 2</a></div></div>
+			<div class="item" ><div id="item2">Alt Page 1</div></div>
+
+			<div class="item" ><div id="item3">Alt Page 2</div></div>
+			<div id="subBar"></div>
 		</div>
-		<div id="subBar"></div>
 	</div>
 
-	<div style="height:300; width:200; background-color:white; position:absolute; left:200; top:100; border: 5px solid #777; border-radius:10px; background-color: #141414;">
-		<p style="margin: 0; padding: 10; text-align: center; color:white; font-family: BigNoodle; font-size: 24; "> Instructions </p>
-		<ul style="color: white;">
+	<div style="height:300; width:200; background-color:white; position:absolute; left:600; top:100;">
+		<div style="position:relative; test-align: center;"> Instructions </div>
+		<ul>
 			<li>Q key : Begin Generating</li>
 			<li>S key : Stop Generating</li>
 			<li>A key : Pulsate Effect </li>
 			<li>D Key : Disapear</li>
 		</ul>
 	</div>
-	<div id="boxGarden" style="height:500; width:400; background-color:white; position:absolute; left:450; top:100; border-radius:10px;"></div>
+	<div id="boxGarden" style="height:500; width:400; background-color:white; position:absolute; left:850; top:100; border-radius:10px;"></div>
 
-	<!-- 	<div id="boxGarden"></div> -->
-
-
-	<!-- <a href="index.html" data-role="button" data-icon="delete">Delete</a> -->
+<!-- 	<div id="boxGarden"></div> -->
 
 
-	<script>
-	var $item = $('.item');
+<a href="index.html" data-role="button" data-icon="delete">Delete</a>
 
-	$($item).mouseenter(function(){
-		/*$(this).fadeTo('fast',.25)*/
-		$(this).css("background-color","#777");
-	});
+<div id="home" style="position: absolute; top:2000;">Home</div>
 
-	$($item).mouseleave(function(){
-		/*$(this).fadeTo('fast',1)*/
-		$(this).css("background-color","#141414");
-	});
+		<script>
+		$( "#draggable" ).draggable();
 
-	var colors = new Array('red','blue','green');
+		var $item = $('.item');
+
+		$($item).mouseenter(function(){
+			$(this).fadeTo('fast',.25)
+		});
+
+		$($item).mouseleave(function(){
+			$(this).fadeTo('fast',1)
+		});
+
+		var colors = new Array('red','blue','green');
 
 
 //for earlier debugging purposes
@@ -71,15 +73,12 @@
 //randomly generate color and location of boxes
 function generateBoxes(setting){
 	timerId = window.setInterval(function(){
-		var randTop = Math.round(360*Math.random())+15;
-		var randLeft = Math.round(260*Math.random())+15;
+		var randTop = Math.round(400*Math.random());
+		var randLeft = Math.round(300*Math.random());
 		var randColor = Math.round(3*Math.random());
 		$('#boxGarden').append($('<div class="sudden" style=" border-radius:10px;position:absolute; top:'+randTop+';left:'+randLeft+';height:50px; width:50px; background-color:'+colors[randColor]+';"></div>'));
 	}, 500);
-	$( ".sudden" ).draggable();
 }
-
-
 
 var timerId = 0;
 

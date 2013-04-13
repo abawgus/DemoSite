@@ -17,113 +17,46 @@
 	</div>
 
 	<div id="sidebar">
-		<div id="itemwrap">
-			<div class="item" ><div id="item1"><a href="index.html#Home">Home</a></div></div>
+		<div id="itemwrap1">
 
-			<div class="item" ><div id="item2"><a href="altpage1.html">Alt Page 1</a></div></div>
+			<div class="item" ><div id="item1"><a href="index.html">Home</a></div></div>
 
-			<div class="item" ><div id="item3"><a href="altpage2.html">Alt Page 2</a></div></div>
+			<div class="item" ><div id="item2"><a href="altpage1.html">Div Garden</a></div></div>
+
+			<div class="item" ><div id="item3"><a href="altpage2.html">Carousel</a></div></div>
+			<div id="subBar"></div>
 		</div>
-		<div id="subBar"></div>
 	</div>
 
-	<div style="height:300; width:200; background-color:white; position:absolute; left:200; top:100; border: 5px solid #777; border-radius:10px; background-color: #141414;">
-		<p style="margin: 0; padding: 10; text-align: center; color:white; font-family: BigNoodle; font-size: 24; "> Instructions </p>
-		<ul style="color: white;">
-			<li>Q key : Begin Generating</li>
-			<li>S key : Stop Generating</li>
-			<li>W key : Toggle Draggable</li>
-			<li>E key : Shake</li>
-			<li>A key : Pulsate</li>
-			<li>D Key : Disapear</li>
-		</ul>
-	</div>
-	<div id="boxGarden" style="height:500; width:400; background-color:white; position:absolute; left:450; top:100; border-radius:10px;"></div>
-
-	<!-- 	<div id="boxGarden"></div> -->
+	<div style="height:60%; width:70%; background-color:white; position:absolute; left:200; top:80; border: 2px solid #777; border-radius:5px; background-color: #141414; color: white; padding: 20px;">
+		<h2 style="text-align: center;"> Lorem Ipsum </h3>
+			<hr />
+			<p style="text-align: center;">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur odio dolor, mollis in venenatis interdum, dictum a lectus. Aliquam sit amet felis velit, in volutpat dolor. Ut cursus consequat dui, eget dictum massa mattis eget. Donec malesuada lorem ut elit condimentum consectetur. Nulla sodales mauris nec justo blandit a venenatis libero ultrices. Cras tincidunt augue quis eros convallis eget viverra dolor gravida. Mauris sed lorem ac arcu ullamcorper sodales ut quis turpis. Duis turpis ante, consectetur eu congue at, imperdiet sed metus. Ut eget sem metus, sit amet mattis libero. Maecenas orci erat, consectetur id consequat sed, consequat vel lectus.
+			</p>
+			<p style="text-align: center;">
+				Mauris hendrerit scelerisque augue adipiscing volutpat. Cras mattis lacus a velit consectetur id convallis neque aliquet. Duis ligula sem, auctor id pulvinar sed, euismod nec ante. Etiam tincidunt facilisis justo quis tristique. Integer ut metus vitae est viverra vulputate sit amet ut sapien. Nullam lobortis venenatis orci, eu pretium elit elementum id. Ut ante nulla, iaculis sit amet euismod in, fermentum vitae urna. Nunc tempor malesuada nulla ac faucibus. Nunc malesuada varius orci, non faucibus lectus semper bibendum. Sed odio diam, imperdiet id fermentum sed, facilisis sed ligula. Nunc non ipsum urna. Pellentesque ut venenatis tortor. Nulla ut ipsum magna, et venenatis velit. Nunc ultrices adipiscing quam vel tincidunt. Vivamus augue lorem, blandit sed vulputate ac, ultrices in nisi. Nunc sagittis, nisi eu rutrum consectetur, lorem arcu fringilla magna, eget pharetra risus urna accumsan dolor.
+			</p>
+		</div>
+		<!-- 	<a href="index.html" data-role="button" data-icon="delete">Delete</a> -->
 
 
-	<!-- <a href="index.html" data-role="button" data-icon="delete">Delete</a> -->
+		<script>
+
+		var $item = $('.item');
+
+		$($item).mouseenter(function(){
+			/*$(this).fadeTo('fast',.25)*/
+			$(this).css("background-color","#777");
+		});
+
+		$($item).mouseleave(function(){
+			/*$(this).fadeTo('fast',1)*/
+			$(this).css("background-color","#141414");
+		});
 
 
-	<script>
-	var $item = $('.item');
+		</script>
 
-	$($item).mouseenter(function(){
-		/*$(this).fadeTo('fast',.25)*/
-		$(this).css("background-color","#777");
-	});
-
-	$($item).mouseleave(function(){
-		/*$(this).fadeTo('fast',1)*/
-		$(this).css("background-color","#141414");
-	});
-
-	var colors = new Array('red','blue','green');
-
-
-//for earlier debugging purposes
-/*		function log(msg) {
-			setTimeout(function() {
-				throw new Error(msg);
-			}, 0);
-		}
-		*/
-
-//randomly generate color and location of boxes
-function generateBoxes(setting){
-	boxState = 1;
-	timerId = window.setInterval(function(){
-		var randTop = Math.round(370*Math.random())+15;
-		var randLeft = Math.round(270*Math.random())+15;
-		var randColor = Math.round(3*Math.random());
-		$('#boxGarden').append($('<div class="sudden" style=" border-radius:10px;position:absolute; top:'+randTop+';left:'+randLeft+';height:50px; width:50px; background-color:'+colors[randColor]+';"></div>'));
-	}, 500);
-}
-
-
-var boxState = 0;
-var timerId = 0;
-var dragState = 0;
-//Take user input and do indicated functionality
-$( document ).keydown(function(key) {
-	switch(parseInt(key.which,10)){
-  	case 81: //letter q
-  	if (boxState == 0){
-  	generateBoxes();
-  	}
-  	break;
-  	case 83: //letter s
-  	if (timerId){
-  		window.clearInterval(timerId);
-  		timerId = 0;
-  	}
-  	break;
-  	case 68: //letter d
-  	$(".sudden").remove();
-  	break;
-	case 65: //letter a
-	$( ".sudden" ).effect("pulsate", { times:3 }, 200);
-	break;
-	case 87: //letter w
-	if (dragState == 0){
-		$( ".sudden" ).draggable({containment: "parent"});
-		dragState = 1;
-	}
-	else{
-		$(".sudden").draggable("destroy");
-		dragState = 0;
-	}
-	break;
-	case 69: //letter e
-	$(".sudden").effect("shake", { times:2 }, 300);
-	break;
-	default:
-	break;  	
-}
-});
-
-</script>
-
-</body>
-</html>
+	</body>
+	</html>
